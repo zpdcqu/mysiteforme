@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 /**
  * Created by wangl on 2017/12/3.
- * todo:菜单排序
+ * 菜单排序
  */
 public class MyCompare implements Comparator<Menu> {
     @Override

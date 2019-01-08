@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Created by wangl on 2018/1/26.
- * todo: 系统定时任务
+ *  系统定时任务
  */
 @Component("systemTask")
 public class SystemTask {

@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 
 /**
  * Created by wangl on 2017/11/26.
- * todo:
+ *
  */
 @Component
 public class FreemarkerConfig {

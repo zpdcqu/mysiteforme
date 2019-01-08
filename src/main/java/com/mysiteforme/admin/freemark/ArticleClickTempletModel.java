@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * Created by wangl on 2018/1/22.
- * todo:文章点击量标签
+ * 文章点击量标签
  */
 @Component
 public class ArticleClickTempletModel implements TemplateMethodModelEx {

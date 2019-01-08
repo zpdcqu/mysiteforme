@@ -32,7 +32,7 @@ import java.util.List;
 
 /**
  * Created by wangl on 2017/11/21.
- * todo:springMVC配置文件
+ * springMVC配置文件
  */
 @Configuration
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {

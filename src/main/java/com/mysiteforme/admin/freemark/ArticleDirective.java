@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * Created by wangl on 2018/1/20.
- * todo: 获取指定栏目下的文章集合
+ *  获取指定栏目下的文章集合
  */
 @Component
 public class ArticleDirective extends BaseDirective implements TemplateDirectiveModel {

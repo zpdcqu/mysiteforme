@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Created by wangl on 2017/11/27.
- * todo:
+ *
  */
 public class LayerData<T> {
     private Integer code = 0;

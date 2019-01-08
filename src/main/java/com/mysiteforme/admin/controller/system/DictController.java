@@ -21,7 +21,7 @@ import java.util.Map;
 
 /**
  * Created by wangl on 2018/1/1.
- * todo:
+ *
  */
 @Controller
 @RequestMapping("admin/system/dict")

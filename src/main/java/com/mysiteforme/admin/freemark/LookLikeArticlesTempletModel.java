@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  * Created by wangl on 2018/2/7.
- * todo:
+ *
  */
 @Component
 public class LookLikeArticlesTempletModel extends BaseDirective implements TemplateDirectiveModel {

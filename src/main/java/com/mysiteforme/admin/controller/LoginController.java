@@ -143,22 +143,55 @@ public class LoginController extends BaseController {
 
 	@GetMapping("main")
 	public String main(Model model){
+
 		Map map = userService.selectUserMenuCount();
 		User user = userService.findUserById(MySysUser.id());
 		Set<Menu> menus = user.getMenus();
 		java.util.List<Menu> showMenus = Lists.newArrayList();
-		if(menus != null && menus.size()>0){
-			for (Menu menu : menus){
-				if(StringUtils.isNotBlank(menu.getHref())){
-					Long result = (Long)map.get(menu.getPermission());
-					if(result != null){
-						menu.setDataCount(result.intValue());
-						showMenus.add(menu);
-					}
-				}
-			}
-		}
+
+
+
+//		if(menus != null && menus.size()>0){
+//			for (Menu menu : menus){
+//				if(StringUtils.isNotBlank(menu.getHref())){
+//					Long result = (Long)map.get(menu.getPermission());
+//					if(result != null){
+//						menu.setDataCount(result.intValue());
+//						showMenus.add(menu);
+//					}
+//				}
+//			}
+//		}
+
+
+		//添加提醒
+		Menu alertDate = new Menu();
+		alertDate.setDataCount(1);
+		alertDate.setIcon("&#xe735;");
+		alertDate.setName("到期提醒");
+
+		Menu myMessage = new Menu();
+		myMessage.setDataCount(1);
+		myMessage.setIcon("&#xe63a;");
+		myMessage.setName("我的消息");
+
+		Menu orderNum = new Menu();
+		orderNum.setDataCount(1);
+		orderNum.setIcon("&#xe657;");
+		orderNum.setName("本月接单数");
+
+		Menu money = new Menu();
+		money.setDataCount(1);
+		money.setIcon("&#xe65e;");
+		money.setName("本月收入");
+
+		showMenus.add(alertDate);
+		showMenus.add(myMessage);
+		showMenus.add(orderNum);
+		showMenus.add(myMessage);
+
 		showMenus.sort(new MenuComparator());
+
 		model.addAttribute("userMenu",showMenus);
 		return "main";
 	}

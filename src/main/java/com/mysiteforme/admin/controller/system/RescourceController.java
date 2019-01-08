@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * Created by wangl on 2018/1/14.
- * todo:
+ *
  */
 @Controller
 @RequestMapping("/admin/system/rescource")

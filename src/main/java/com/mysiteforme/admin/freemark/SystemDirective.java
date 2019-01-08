@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * Created by wangl on 2017/11/26.
- * todo: 获取字典标签
+ *  获取字典标签
  */
 @Component
 public class SystemDirective extends BaseDirective implements TemplateDirectiveModel {

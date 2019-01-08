@@ -33,7 +33,7 @@ import java.util.Map;
 
 /**
  * Created by wangl on 2017/11/22.
- * todo:
+ *
  */
 @Configuration
 public class ShiroConfig {

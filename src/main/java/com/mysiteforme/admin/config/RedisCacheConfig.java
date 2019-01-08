@@ -17,7 +17,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 
 /**
  * Created by wangl on 2017/11/25.
- * todo:
+ *
  */
 @EnableCaching
 @Configuration

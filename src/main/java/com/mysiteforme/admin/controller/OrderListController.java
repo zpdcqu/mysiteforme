@@ -1,5 +1,6 @@
 package com.mysiteforme.admin.controller;
 
+import com.mysiteforme.admin.util.OrderConstant;
 import com.xiaoleilu.hutool.date.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -117,9 +118,19 @@ public class OrderListController {
         return layerData;
     }
 
+    /**
+     * Todo：自动生成编号
+     * @return
+     */
     @GetMapping("add")
     @SysLog("跳转新增订单列表页面")
-    public String add(){
+    public String add( Model model){
+        OrderList orderList = new OrderList();
+        int maxId = orderListService.selectMaxId();
+
+        orderList.setOrderId("T1"+maxId*100);
+        model.addAttribute("orderId",orderList.getOrderId());
+
         return "/admin/orderList/add";
     }
 

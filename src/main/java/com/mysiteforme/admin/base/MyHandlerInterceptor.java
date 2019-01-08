@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by wangl on 2017/11/30.
- * todo:
+ *
  */
 @Component
 public class MyHandlerInterceptor implements HandlerInterceptor {

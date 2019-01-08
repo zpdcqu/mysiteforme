@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  * Created by wangl on 2018/1/20.
- * todo:获取文章列表数据（可选参数：排序，集合长度）
+ * 获取文章列表数据（可选参数：排序，集合长度）
  */
 @Component
 public class IndexArticleDirective extends BaseDirective implements TemplateDirectiveModel {

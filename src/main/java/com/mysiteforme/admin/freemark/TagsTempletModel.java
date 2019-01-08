@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * Created by wangl on 2018/2/4.
- * todo: 获取文章的标签集合
+ *  获取文章的标签集合
  */
 @Component
 public class TagsTempletModel extends BaseDirective implements TemplateDirectiveModel {
