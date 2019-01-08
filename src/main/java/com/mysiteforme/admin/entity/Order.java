@@ -13,7 +13,7 @@ import java.util.Date;
  * @author: Zheng Peidong
  * @create: 2019-01-07 19:24
  */
-@TableName("order")
+@TableName("order_list")
 public class Order extends DataEntity<Order> {
     private static final long serialVersionUID = 1L;
 
