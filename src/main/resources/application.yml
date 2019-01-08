@@ -113,12 +113,12 @@ spring:
 #日志
 logging:
   config: classpath:log/logback.xml
-  path: e:\log\mysiteforme
+  path: c:\log\mysiteforme
 
 #自定义配置属性
 #源码生成文件夹
-source-code-dic:  D://mysite
-source-code-zipfile:  D://源码.rar
+source-code-dic:  c://mysite
+source-code-zipfile:  c://源码.rar
 
 #搜索文件生成包的位置
 #本地路径

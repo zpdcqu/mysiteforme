@@ -199,7 +199,7 @@
                 {field:'expiration', title: '截止日期'},
                 {field:'money', title: '总价'},
                 {field:'adminReply', title: '接单状况'},
-                {field:'replyContent', title: '管理员回复内容',templet:'#replyContent'}
+                {field:'replyContent', title: '接单人',templet:'#replyContent'}
             ]]
         };
         table.render(t);
