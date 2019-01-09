@@ -29,6 +29,9 @@ public class OrderListServiceImpl extends ServiceImpl<OrderListDao, OrderList> i
     @Override
     public int selectMaxId() {
         Integer id = orderListDao.selectMaxId();
-        return id;
+        if(id==null){
+            id=0;
+        }
+        return ++id;
     }
 }
