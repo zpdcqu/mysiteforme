@@ -35,7 +35,7 @@
         <label class="layui-form-label">订单编号</label>
         <div class="layui-input-block">
 
-            <input  type="text"  class="layui-input" name="orderId"  placeholder="请输入订单编号" value="${orderId}">
+            <input  type="text"  class="layui-input" name="orderId"  placeholder="请输入订单编号">
         </div>
     </div>
     <div class="layui-form-item">
