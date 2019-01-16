@@ -136,24 +136,6 @@
 <script type="text/javascript" src="${base}/static/layui/layui.js"></script>
 <script type="text/javascript" src="${base}/static/js/leftNav.js?v=2.0"></script>
 <script type="text/javascript" src="${base}/static/js/index.js?t=3.0"></script>
-<script>
-
-    layui.use('layim', function(layim){
-        //先来个客服模式压压精
-        layim.config({
-            init: {},
-            brief: false, //是否简约模式（如果true则不显示主面板）
-            chatLog: layui.cache.dir + 'css/modules/layim/html/chatlog.html',
-            msgbox: layui.cache.dir + 'css/modules/layim/html/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
-
-        }).chat({
-            name: '客服姐姐'
-            ,type: 'friend'
-            ,avatar: 'http://tp1.sinaimg.cn/5619439268/180/40030060651/1'
-            ,id: -2
-        });
-    });
-
-</script>
+<script type="text/javascript" src="${base}/static/js/mine.js"></script>
 </body>
 </html>
