@@ -128,4 +128,12 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 		return baseMapper.selectUserMenuCount();
 	}
 
+	@Override
+	public void updateUserStatus(Long userId, String online) {
+		User user = new User();
+		user.setId(userId);
+		user.setStatus(online);
+		baseMapper.updateById(user);
+	}
+
 }

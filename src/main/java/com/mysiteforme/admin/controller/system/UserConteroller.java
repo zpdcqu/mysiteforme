@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -101,6 +102,21 @@ public class UserConteroller extends BaseController{
         }
         return RestResponse.success();
     }
+
+
+    /**
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("mine")
+    @ResponseBody
+    public String myMine(HttpServletRequest request) {
+        userService.updateUserStatus((Long) request.getSession().getAttribute("userId"), "online");
+        return gson.toJson(userService.getUserInfo((Long) request.getSession().getAttribute("userId")));
+    }
+
 
     @GetMapping("edit")
     public String edit(Long id,Model model){

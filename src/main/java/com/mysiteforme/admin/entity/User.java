@@ -26,7 +26,18 @@ public class User extends DataEntity<User> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
+    @TableField("status")
+    private String status;
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	/**
      * 登录名
      */
 	@TableField("login_name")

@@ -1,7 +1,7 @@
 package com.mysiteforme.admin.service;
 
-import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
+import com.mysiteforme.admin.entity.ChatMessageResult;
 import com.mysiteforme.admin.entity.Role;
 import com.mysiteforme.admin.entity.User;
 
@@ -35,4 +35,8 @@ public interface UserService extends IService<User> {
 	void deleteUser(User user);
 
 	Map selectUserMenuCount();
+
+    void updateUserStatus(Long userId, String online);
+
+	ChatMessageResult getUserInfo(Long userId);
 }

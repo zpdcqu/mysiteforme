@@ -216,7 +216,7 @@
                 last: "尾页", //显示尾页
                 limits:[3,10, 20, 30]
             },
-            cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            cellMinWidth: 150, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             cols: [[
                 {type:'checkbox'},
                 {field:'orderId', title: '订单编号'},
