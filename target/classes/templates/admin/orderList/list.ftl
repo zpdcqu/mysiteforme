@@ -51,6 +51,12 @@
                 </div>
     </div>
     <div class="layui-inline" style="margin-left: 15px">
+            <label>关联客户:</label>
+                <div class="layui-input-inline">
+                <input type="text" value="" name="s_userCId" placeholder="请输入关联客户" class="layui-input search_input">
+                </div>
+    </div>
+    <div class="layui-inline" style="margin-left: 15px">
             <label>所属类别:</label>
                 <div class="layui-input-inline">
                 <select name="s_categories">
@@ -64,11 +70,40 @@
                 </div>
     </div>
     <div class="layui-inline" style="margin-left: 15px">
+            <label>关联技术:</label>
+                <div class="layui-input-inline">
+                <input type="text" value="" name="s_userTId" placeholder="请输入关联技术" class="layui-input search_input">
+                </div>
+    </div>
+    <div class="layui-inline" style="margin-left: 15px">
             <label>课程等级:</label>
                 <div class="layui-input-inline">
                 <select name="s_level">
                     <option value="" selected="">请选择课程等级</option>
                     <@my type="order_list_level">
+                    <#list result as r>
+                    <option value="${r.value}" >${r.label}</option>
+                    </#list>
+                    </@my>
+                </select>
+                </div>
+    </div>
+    <div class="layui-inline" style="margin-left: 15px">
+            <label>是否加急:</label>
+                <div class="layui-input-inline">
+                <select name="s_isVip">
+                    <option value="" selected="">请选择是否加急</option>
+                    <option value="true" >是</option>
+                    <option value="false" >否</option>
+                </select>
+                </div>
+    </div>
+    <div class="layui-inline" style="margin-left: 15px">
+            <label>订单进度:</label>
+                <div class="layui-input-inline">
+                <select name="s_progress">
+                    <option value="" selected="">请选择订单进度</option>
+                    <@my type="order_list_progress">
                     <#list result as r>
                     <option value="${r.value}" >${r.label}</option>
                     </#list>
@@ -103,6 +138,22 @@
         <@my type="order_list_level">
         <#list result as r>
         {{#  if(d.level == ${r.value}){ }}
+        <span>${r.label}</span>
+        {{#  } }}
+        </#list>
+        </@my>
+    </script>
+    <script type="text/html" id="isVip">
+        {{#  if(d.vip == true){ }}
+        <span>是</span>
+        {{# }else{ }}
+        <span>否</span>
+        {{# } }}
+    </script>
+    <script type="text/html" id="progress">
+        <@my type="order_list_progress">
+        <#list result as r>
+        {{#  if(d.progress == ${r.value}){ }}
         <span>${r.label}</span>
         {{#  } }}
         </#list>
@@ -216,15 +267,19 @@
                 last: "尾页", //显示尾页
                 limits:[3,10, 20, 30]
             },
-            cellMinWidth: 150, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             cols: [[
                 {type:'checkbox'},
                 {field:'orderId', title: '订单编号'},
                 {field:'name', title: '订单名称'},
                 {field:'deadDate',  title: '截止时间',templet:'<div>{{ layui.laytpl.toDateString(d.deadDate,"yyyy-MM-dd") }}</div>',unresize: true},
                 {field:'money', title: '订单价格'},
+                {field:'userCId', title: '关联客户'},
                 {field:'categories', title: '所属类别',templet:'#categories'},
+                {field:'userTId', title: '关联技术'},
                 {field:'level', title: '课程等级',templet:'#level'},
+                {field:'vip', title: '是否加急',templet:'#isVip'},
+                {field:'progress', title: '订单进度',templet:'#progress'},
                 {field:'delFlag',    title: '订单列表状态',width:'12%',templet:'#userStatus'},
                 {field:'createDate',  title: '创建时间',width:'15%',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
                 {fixed: 'right', title:'操作',  width: '15%', align: 'center',toolbar: '#barDemo'}

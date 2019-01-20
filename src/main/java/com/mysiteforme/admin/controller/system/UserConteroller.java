@@ -1,5 +1,7 @@
 package com.mysiteforme.admin.controller.system;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.google.common.collect.Lists;
@@ -9,11 +11,10 @@ import com.mysiteforme.admin.base.MySysUser;
 import com.mysiteforme.admin.entity.Role;
 import com.mysiteforme.admin.entity.User;
 import com.mysiteforme.admin.entity.VO.ShowMenu;
-import com.mysiteforme.admin.util.Constants;
-import com.mysiteforme.admin.util.LayerData;
-import com.mysiteforme.admin.util.RestResponse;
-import com.mysiteforme.admin.util.ToolUtil;
+import com.mysiteforme.admin.realm.AuthRealm;
+import com.mysiteforme.admin.util.*;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,46 @@ import java.util.Set;
 @RequestMapping("admin/system/user")
 public class UserConteroller extends BaseController{
     private static final Logger LOGGER = LoggerFactory.getLogger(UserConteroller.class);
+
+
+
+
+
+
+
+
+
+    @GetMapping("mine")
+    @SysLog("跳转系统用户列表页面")
+    @ResponseBody
+    public JSONObject mine(){
+        AuthRealm.ShiroUser user = (AuthRealm.ShiroUser) SecurityUtils.getSubject().getPrincipal();
+        Long id = user.getId();
+        return   HttpClientUtils.httpGet("http://localhost:8081/user/mine?id="+id);
+    }
+
+
+    @GetMapping("group_members")
+    @SysLog("跳转系统用户列表页面")
+    @ResponseBody
+    public JSONObject group_members(Long id){
+
+        return   HttpClientUtils.httpGet("http://localhost:8081/user/group_members?id="+id);
+    }
+
+    @GetMapping("updateStatus")
+    @SysLog("跳转系统用户列表页面")
+    @ResponseBody
+    public int updateStatus(HttpServletRequest request, String status){
+        AuthRealm.ShiroUser user = (AuthRealm.ShiroUser) SecurityUtils.getSubject().getPrincipal();
+        Long id = user.getId();
+        JSONObject jsonObject = HttpClientUtils.httpGet("http://localhost:8081/user/group_members?id=" + id + "&status=" + status);
+        String s = JSON.toJSONString(jsonObject);
+        return Integer.parseInt(s);
+    }
+
+
+
 
     @GetMapping("list")
     @SysLog("跳转系统用户列表页面")
@@ -104,18 +145,6 @@ public class UserConteroller extends BaseController{
     }
 
 
-    /**
-     *
-     * @param id
-     * @param model
-     * @return
-     */
-    @GetMapping("mine")
-    @ResponseBody
-    public String myMine(HttpServletRequest request) {
-        userService.updateUserStatus((Long) request.getSession().getAttribute("userId"), "online");
-        return gson.toJson(userService.getUserInfo((Long) request.getSession().getAttribute("userId")));
-    }
 
 
     @GetMapping("edit")

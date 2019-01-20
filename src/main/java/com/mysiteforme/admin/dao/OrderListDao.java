@@ -9,9 +9,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author wangl
- * @since 2019-01-08
+ * @since 2019-01-20
  */
 public interface OrderListDao extends BaseMapper<OrderList> {
 
-    Integer selectMaxId();
 }

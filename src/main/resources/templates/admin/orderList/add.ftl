@@ -60,6 +60,13 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">关联客户</label>
+        <div class="layui-input-block">
+
+            <input  type="text"  class="layui-input" name="userCId"  placeholder="请输入关联客户">
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">所属类别</label>
         <div class="layui-input-block">
 
@@ -74,12 +81,41 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">关联技术</label>
+        <div class="layui-input-block">
+
+            <input  type="text"  class="layui-input" name="userTId"  placeholder="请输入关联技术">
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">课程等级</label>
         <div class="layui-input-block">
 
             <select name="level" >
                 <option value="" selected="">请选择课程等级</option>
                 <@my type="order_list_level">
+                <#list result as r>
+                <option value="${r.value}" >${r.label}</option>
+                </#list>
+                </@my>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否加急</label>
+        <div class="layui-input-block">
+
+            <input type="checkbox" name="vip"  lay-skin="switch" value="1" lay-text="是|否" >
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">订单进度</label>
+        <div class="layui-input-block">
+
+            <select name="progress" >
+                <option value="" selected="">请选择订单进度</option>
+                <@my type="order_list_progress">
                 <#list result as r>
                 <option value="${r.value}" >${r.label}</option>
                 </#list>
@@ -113,6 +149,12 @@
                     }else{
                         data.field.deadDate = new Date(data.field.deadDate);
                     }
+                     if(undefined === data.field.vip || '0' === data.field.vip || null === data.field.vip){
+                    data.field.vip = false;
+                }else{
+                    data.field.vip = true;
+                }
+
 
             var loadIndex = layer.load(2, {
                 shade: [0.3, '#333']

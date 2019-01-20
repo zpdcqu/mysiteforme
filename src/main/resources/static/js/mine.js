@@ -10,11 +10,11 @@ layui.use(['layim', 'layer', 'jquery', 'contextMenu'], function () {
         cachedata =  layui.layim.cache();
     layim.config({
         init: {
-            url: '/user/mine', //接口地址
+            url: '/admin/system/user/mine', //接口地址
         }
-        , title: "小白IM"
+        , title: "联系客户/客服"
         , members: {
-            url: '/user/group_members' //接口地址
+            url: '/admin/system/user/group_members' //接口地址
         }
         , msgbox: 'static/layui/css/modules/layim/html/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
         , find: 'static/layui/css/modules/layim/html/find.html' //发现页面地址，若不开启，剔除该项即可
@@ -29,7 +29,8 @@ layui.use(['layim', 'layer', 'jquery', 'contextMenu'], function () {
     });
     //面板初始化时候获取用户id
     layim.on("ready", function (data) {
-        let wsUrl = "ws://" + window.location.host + "/websocket/" + data.mine.id;
+        let wsUrl = "ws://" +"localhost:8081" + "/websocket/" + data.mine.id;
+
         ws = new WebSocket(wsUrl);
         ws.onmessage = function (ev) {
             let chat = JSON.parse(ev.data);
@@ -78,11 +79,11 @@ layui.use(['layim', 'layer', 'jquery', 'contextMenu'], function () {
     });
 //修改在线状态
     layim.on('online', function (status) {
-        $.get('/user/updateStatus', {status: status});
+        $.get('/admin/system/user/updateStatus', {status: status});
     });
 //修改签名
     layim.on('sign', function (value) {
-        $.get('/user/updateSign', {sign: value});
+        $.get('/admin/system/user/updateSign', {sign: value});
     });
 
 // layim.add({

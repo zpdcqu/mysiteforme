@@ -1,6 +1,5 @@
 package com.mysiteforme.admin.service;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.mysiteforme.admin.entity.OrderList;
 import com.baomidou.mybatisplus.service.IService;
 /**
@@ -9,11 +8,8 @@ import com.baomidou.mybatisplus.service.IService;
  * </p>
  *
  * @author wangl
- * @since 2019-01-08
+ * @since 2019-01-20
  */
 public interface OrderListService extends IService<OrderList> {
 
-
-
-    int selectMaxId();
 }

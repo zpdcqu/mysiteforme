@@ -26,7 +26,7 @@
     <!-- 顶部 -->
     <div class="layui-header header">
         <div class="layui-main">
-            <a href="#" class="logo">mysiteforme</a>
+            <a href="#" class="logo">中信博文</a>
             <!-- 显示/隐藏菜单 -->
             <a href="javascript:" class="iconfont hideMenu icon-menu1"></a>
             <#--<!-- 搜索 &ndash;&gt;-->
@@ -102,7 +102,7 @@
     <div class="layui-body layui-form">
         <div class="layui-tab marg0" lay-filter="bodyTab" id="top_tabs_box">
             <ul class="layui-tab-title top_tab" id="top_tabs">
-                <li class="layui-this" lay-id=""><i class="iconfont icon-computer"></i> <cite>后台首页</cite></li>
+                <li class="layui-this" lay-id=""><i class="iconfont icon-computer"></i> <cite>欢迎首页</cite></li>
             </ul>
             <ul class="layui-nav closeBox">
                 <li class="layui-nav-item">
@@ -123,7 +123,7 @@
     </div>
     <!-- 底部 -->
     <div class="layui-footer footer">
-        <p>Copyright © 2018孤独的旅行家  Design By 马哥 <a href="http://www.miibeian.gov.cn" target="_blank">苏ICP备17063650号 </a></p>
+        <p>Copyright © 2018中信博文  Design By zpd <a href="http://www.miibeian.gov.cn" target="_blank">苏ICP备17063650号 </a></p>
     </div>
 </div>
 <script>

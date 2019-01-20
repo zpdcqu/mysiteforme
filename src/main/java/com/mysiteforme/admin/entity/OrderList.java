@@ -12,7 +12,7 @@ import com.mysiteforme.admin.base.DataEntity;
  * </p>
  *
  * @author wangl
- * @since 2019-01-08
+ * @since 2019-01-20
  */
 @TableName("order_list")
 public class OrderList extends DataEntity<OrderList> {
@@ -45,7 +45,7 @@ public class OrderList extends DataEntity<OrderList> {
     /**
      * 所属类别
      */
-	private String categories;
+	private Integer categories;
     /**
      * 关联技术
      */
@@ -55,6 +55,19 @@ public class OrderList extends DataEntity<OrderList> {
      * 课程等级
      */
 	private Integer level;
+    /**
+     * 是否加急
+     */
+	@TableField("is_vip")
+	private Boolean isVip;
+    /**
+     * 订单进度
+     */
+	private Integer progress;
+    /**
+     * 其他需求
+     */
+	private String others;
 
 	public String getOrderId() {
 		return orderId;
@@ -91,11 +104,11 @@ public class OrderList extends DataEntity<OrderList> {
 	public void setUserCId(Integer userCId) {
 		this.userCId = userCId;
 	}
-	public String getCategories() {
+	public Integer getCategories() {
 		return categories;
 	}
 
-	public void setCategories(String categories) {
+	public void setCategories(Integer categories) {
 		this.categories = categories;
 	}
 	public Integer getUserTId() {
@@ -112,6 +125,27 @@ public class OrderList extends DataEntity<OrderList> {
 	public void setLevel(Integer level) {
 		this.level = level;
 	}
+	public Boolean getVip() {
+		return isVip;
+	}
+
+	public void setVip(Boolean isVip) {
+		this.isVip = isVip;
+	}
+	public Integer getProgress() {
+		return progress;
+	}
+
+	public void setProgress(Integer progress) {
+		this.progress = progress;
+	}
+	public String getOthers() {
+		return others;
+	}
+
+	public void setOthers(String others) {
+		this.others = others;
+	}
 
 
 	@Override
@@ -125,6 +159,9 @@ public class OrderList extends DataEntity<OrderList> {
 			", categories=" + categories +
 			", userTId=" + userTId +
 			", level=" + level +
+			", isVip=" + isVip +
+			", progress=" + progress +
+			", others=" + others +
 			"}";
 	}
 }

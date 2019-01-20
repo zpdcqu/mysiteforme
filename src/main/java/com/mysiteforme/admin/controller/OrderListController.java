@@ -1,6 +1,5 @@
 package com.mysiteforme.admin.controller;
 
-import com.mysiteforme.admin.util.OrderConstant;
 import com.xiaoleilu.hutool.date.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +33,7 @@ import java.util.Map;
  * </p>
  *
  * @author wangl
- * @since 2019-01-08
+ * @since 2019-01-20
  */
 @Controller
 @RequestMapping("/admin/orderList")
@@ -97,11 +96,25 @@ public class OrderListController {
                 map.remove("money");
             }
 
+            String userCId = (String) map.get("userCId");
+            if(StringUtils.isNotBlank(userCId)) {
+                wrapper.like("user_c_id",userCId);
+            }else{
+                map.remove("userCId");
+            }
+
             String categories = (String) map.get("categories");
             if(StringUtils.isNotBlank(categories)) {
                 wrapper.eq("categories",categories);
             }else{
                 map.remove("categories");
+            }
+
+            String userTId = (String) map.get("userTId");
+            if(StringUtils.isNotBlank(userTId)) {
+                wrapper.like("user_t_id",userTId);
+            }else{
+                map.remove("userTId");
             }
 
             String level = (String) map.get("level");
@@ -111,6 +124,26 @@ public class OrderListController {
                 map.remove("level");
             }
 
+            String isVip = (String) map.get("isVip");
+            if(StringUtils.isNotBlank(isVip)) {
+                if(isVip.equalsIgnoreCase("true")){
+                    wrapper.eq("is_vip",true);
+                }else if(isVip.equalsIgnoreCase("false")){
+                    wrapper.eq("is_vip",false);
+                }else{
+                    map.remove("isVip");
+                }
+            }else{
+                map.remove("isVip");
+            }
+
+            String progress = (String) map.get("progress");
+            if(StringUtils.isNotBlank(progress)) {
+                wrapper.eq("progress",progress);
+            }else{
+                map.remove("progress");
+            }
+
         }
         Page<OrderList> pageData = orderListService.selectPage(new Page<>(page,limit),wrapper);
         layerData.setData(pageData.getRecords());
@@ -118,19 +151,9 @@ public class OrderListController {
         return layerData;
     }
 
-    /**
-     * Todo：自动生成编号
-     * @return
-     */
     @GetMapping("add")
     @SysLog("跳转新增订单列表页面")
-    public String add( Model model){
-        OrderList orderList = new OrderList();
-        int maxId = orderListService.selectMaxId();
-
-        orderList.setOrderId("T1"+maxId*100);
-        model.addAttribute("orderId",orderList.getOrderId());
-
+    public String add(){
         return "/admin/orderList/add";
     }
 
