@@ -29,11 +29,11 @@ import java.util.Map;
 
 /**
  * <p>
- * 客户需求  前端控制器
+ * 需求表  前端控制器
  * </p>
  *
  * @author wangl
- * @since 2019-01-20
+ * @since 2019-02-17
  */
 @Controller
 @RequestMapping("/admin/demand")
@@ -44,14 +44,14 @@ public class DemandController {
     private DemandService demandService;
 
     @GetMapping("list")
-    @SysLog("跳转客户需求列表")
+    @SysLog("跳转需求表列表")
     public String list(){
         return "/admin/demand/list";
     }
 
     @PostMapping("list")
     @ResponseBody
-    @SysLog("请求客户需求列表数据")
+    @SysLog("请求需求表列表数据")
     public LayerData<Demand> list(@RequestParam(value = "page",defaultValue = "1")Integer page,
                                       @RequestParam(value = "limit",defaultValue = "10")Integer limit,
                                       ServletRequest request){
@@ -74,13 +74,6 @@ public class DemandController {
                 map.remove("type");
             }
 
-            String isOne = (String) map.get("isOne");
-            if(StringUtils.isNotBlank(isOne)) {
-                wrapper.eq("isOne",isOne);
-            }else{
-                map.remove("isOne");
-            }
-
         }
         Page<Demand> pageData = demandService.selectPage(new Page<>(page,limit),wrapper);
         layerData.setData(pageData.getRecords());
@@ -89,13 +82,13 @@ public class DemandController {
     }
 
     @GetMapping("add")
-    @SysLog("跳转新增客户需求页面")
+    @SysLog("跳转新增需求表页面")
     public String add(){
         return "/admin/demand/add";
     }
 
     @PostMapping("add")
-    @SysLog("保存新增客户需求数据")
+    @SysLog("保存新增需求表数据")
     @ResponseBody
     public RestResponse add(Demand demand){
         demandService.insert(demand);
@@ -103,7 +96,7 @@ public class DemandController {
     }
 
     @GetMapping("edit")
-    @SysLog("跳转编辑客户需求页面")
+    @SysLog("跳转编辑需求表页面")
     public String edit(Long id,Model model){
         Demand demand = demandService.selectById(id);
         model.addAttribute("demand",demand);
@@ -112,7 +105,7 @@ public class DemandController {
 
     @PostMapping("edit")
     @ResponseBody
-    @SysLog("保存编辑客户需求数据")
+    @SysLog("保存编辑需求表数据")
     public RestResponse edit(Demand demand){
         if(null == demand.getId() || 0 == demand.getId()){
             return RestResponse.failure("ID不能为空");
@@ -123,7 +116,7 @@ public class DemandController {
 
     @PostMapping("delete")
     @ResponseBody
-    @SysLog("删除客户需求数据")
+    @SysLog("删除需求表数据")
     public RestResponse delete(@RequestParam(value = "id",required = false)Long id){
         if(null == id || 0 == id){
             return RestResponse.failure("ID不能为空");

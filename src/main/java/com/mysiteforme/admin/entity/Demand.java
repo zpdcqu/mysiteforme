@@ -1,21 +1,22 @@
 package com.mysiteforme.admin.entity;
 
 import com.baomidou.mybatisplus.activerecord.Model;
-import com.mysiteforme.admin.base.TreeEntity;
+import com.mysiteforme.admin.base.DataEntity;
 
 /**
  * <p>
- * 客户需求
+ * 需求表
  * </p>
  *
  * @author wangl
- * @since 2019-01-20
+ * @since 2019-02-17
  */
-public class Demand extends TreeEntity<Demand> {
+public class Demand extends DataEntity<Demand> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
+
+	/**
      * 需求名称
      */
 	private String name;
@@ -24,9 +25,9 @@ public class Demand extends TreeEntity<Demand> {
      */
 	private Integer type;
     /**
-     * 用途
+     * 下拉选项
      */
-	private Integer isOne;
+	private String option;
 
 	public String getName() {
 		return name;
@@ -42,12 +43,12 @@ public class Demand extends TreeEntity<Demand> {
 	public void setType(Integer type) {
 		this.type = type;
 	}
-	public Integer getIsOne() {
-		return isOne;
+	public String getOption() {
+		return option;
 	}
 
-	public void setIsOne(Integer isOne) {
-		this.isOne = isOne;
+	public void setOption(String option) {
+		this.option = option;
 	}
 
 
@@ -56,7 +57,7 @@ public class Demand extends TreeEntity<Demand> {
 		return "Demand{" +
 			", name=" + name +
 			", type=" + type +
-			", isOne=" + isOne +
+			", option=" + option +
 			"}";
 	}
 }

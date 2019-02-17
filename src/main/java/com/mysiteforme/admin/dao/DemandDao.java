@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
  * <p>
- * 客户需求 Mapper 接口
+ * 需求表 Mapper 接口
  * </p>
  *
  * @author wangl
- * @since 2019-01-20
+ * @since 2019-02-17
  */
 public interface DemandDao extends BaseMapper<Demand> {
 

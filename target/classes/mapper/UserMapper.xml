@@ -28,7 +28,24 @@
             <result property="sort" column="menu.sort"/>
         </collection>
     </resultMap>
+<resultMap id="ResultOfInteger" type="java.lang.Integer">
+        <result column="id" property="id" jdbcType="INTEGER" />
+    </resultMap>
 
+    <select id="selectMaxCid"  resultMap="ResultOfInteger">
+        select
+       id
+       from
+       sys_user
+       order by id desc limit 0,1
+      
+    </select>
+    
+    <insert id="updateUserRole">
+    	insert into sys_user_role (user_id,role_id) values(#{id},3)
+    </insert>
+    
+    
     <select id="selectUserByMap" resultMap="UserMap"  parameterType="java.util.Map">
         SELECT
         u.id,

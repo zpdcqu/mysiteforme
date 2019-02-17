@@ -37,4 +37,8 @@ public interface UserService extends IService<User> {
 	Map selectUserMenuCount();
 
     void updateUserStatus(Long userId, String online);
+
+	int selectMaxCid();
+
+	void updateUserRole(Long id);
 }

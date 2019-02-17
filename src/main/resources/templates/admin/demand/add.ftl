@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>客户需求添加--${site.name}</title>
+    <title>需求表添加--${site.name}</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -53,17 +53,10 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">用途</label>
+        <label class="layui-form-label">下拉选项</label>
         <div class="layui-input-block">
 
-            <select name="isOne" >
-                <option value="" selected="">请选择用途</option>
-                <@my type="demand_isOne">
-                <#list result as r>
-                <option value="${r.value}" >${r.label}</option>
-                </#list>
-                </@my>
-            </select>
+            <input  type="text"  class="layui-input" name="option"  placeholder="请输入下拉选项">
         </div>
     </div>
     <div class="layui-form-item">
@@ -89,7 +82,7 @@
             $.post("${base}/admin/demand/add",data.field,function(res){
                 layer.close(loadIndex);
                 if(res.success){
-                    parent.layer.msg("客户需求添加成功！",{time:1000},function(){
+                    parent.layer.msg("需求表添加成功！",{time:1000},function(){
                         parent.layer.close(parent.addIndex);
                         //刷新父页面
                         parent.location.reload();

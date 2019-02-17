@@ -272,16 +272,17 @@
                 {type:'checkbox'},
                 {field:'orderId', title: '订单编号'},
                 {field:'name', title: '订单名称'},
+                 {field:'categories', title: '所属类别',templet:'#categories'},
                 {field:'deadDate',  title: '截止时间',templet:'<div>{{ layui.laytpl.toDateString(d.deadDate,"yyyy-MM-dd") }}</div>',unresize: true},
+                {field:'remaining', title: '剩余时间',templet:'#remaining'},
                 {field:'money', title: '订单价格'},
-                {field:'userCId', title: '关联客户'},
-                {field:'categories', title: '所属类别',templet:'#categories'},
-                {field:'userTId', title: '关联技术'},
-                {field:'level', title: '课程等级',templet:'#level'},
-                {field:'vip', title: '是否加急',templet:'#isVip'},
+                {field:'userCId', title: '关联客户'},              
+                {field:'userTId', title: '接单人'},
+         //       {field:'level', title: '课程等级',templet:'#level'},
+           //     {field:'vip', title: '是否加急',templet:'#isVip'},
                 {field:'progress', title: '订单进度',templet:'#progress'},
-                {field:'delFlag',    title: '订单列表状态',width:'12%',templet:'#userStatus'},
-                {field:'createDate',  title: '创建时间',width:'15%',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
+         //       {field:'delFlag',    title: '订单列表状态',width:'12%',templet:'#userStatus'},
+           //     {field:'createDate',  title: '创建时间',width:'15%',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
                 {fixed: 'right', title:'操作',  width: '15%', align: 'center',toolbar: '#barDemo'}
             ]]
         };

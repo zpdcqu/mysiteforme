@@ -41,7 +41,7 @@ public class OrderList extends DataEntity<OrderList> {
      * 关联客户
      */
 	@TableField("user_c_id")
-	private Integer userCId;
+	private String userCId;
     /**
      * 所属类别
      */
@@ -97,11 +97,11 @@ public class OrderList extends DataEntity<OrderList> {
 	public void setMoney(Long money) {
 		this.money = money;
 	}
-	public Integer getUserCId() {
+	public String getUserCId() {
 		return userCId;
 	}
 
-	public void setUserCId(Integer userCId) {
+	public void setUserCId(String userCId) {
 		this.userCId = userCId;
 	}
 	public Integer getCategories() {

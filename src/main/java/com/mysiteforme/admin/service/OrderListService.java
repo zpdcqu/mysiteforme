@@ -12,4 +12,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface OrderListService extends IService<OrderList> {
 
+	int selectMaxId();
+
 }

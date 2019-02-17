@@ -20,18 +20,12 @@
     </#if>
 </div>
 
-
-<div class="layui-col-md12">
-    <div class="layui-card">
-
-        <div class="layui-card-header">
-
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-                <legend>   关键数据实时指标</legend>
-            </fieldset>
-        </div>
-        <div class="layui-card-body">
-            <div>
+<div style="padding: 20px; background-color: #F2F2F2;">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md24">
+					<div class="layui-card">
+						<div class="layui-card-header">关键实时数据</div>
+						<div class="layui-card-body" style="height:100px"> <div>
                 <#list userMenu as items>
                     <div class="panel col <#if (!items_has_next)>max_panel</#if> ">
                         <a href="javascript:" data-url="${base}${items.href}">
@@ -47,28 +41,20 @@
                         </a>
                     </div>
                 </#list>
-            </div>
-        </div>
-    </div>
-</div>
-<br/>
-<div class="layui-col-md8">
-    <div class="layui-card">
-        <div class="layui-card-header">
-
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-                <legend>   任务大厅</legend>
-            </fieldset>
-            <a style="float: right" href="#">更多 </a>
-        </div>
-        <div class="layui-card-body">
-            <table id="gridList" style="margin: 0px; padding: 0px; width: 688px;" tabindex="0" role="presentation"
+            </div> </div>
+					</div>
+				</div>
+				<div class="layui-col-md7">
+					<div class="layui-card">
+						<div class="layui-card-header">任务大厅 <a href="#" style="float: right;">更多</a></div>
+						<div class="layui-card-body">
+							 <table id="gridList" style="margin: 0px; padding: 0px; width: 688px;" tabindex="0" role="presentation"
                    aria-multiselectable="false" aria-labelledby="gbox_gridList"
                    class="ui-jqgrid-btable ui-common-table table table-bordered">
                 <tbody>
                 <tr class="jqgfirstrow" role="row">
                     <td role="gridcell" style="height:0px;width:28px;"></td>
-                    <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
+                    <td role="gridcell" style="height:0px;width:150px;display:none;">任务编号</td>
                     <td role="gridcell" style="height:0px;width:70px;"></td>
                     <td role="gridcell" style="height:0px;width:300px;"></td>
                     <td role="gridcell" style="height:0px;width:80px;"></td>
@@ -253,78 +239,51 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md5">
+					<div class="layui-card">
+						<div class="layui-card-header">可能感兴趣的订单 </div>
+						<div class="layui-card-body"> 放个表格 </div>
+					</div>
+				</div>
+				<div class="layui-col-md7">
+					<div class="layui-card">
+						<div class="layui-card-header">在线沟通须知</div>
+						<div class="layui-card-body"> 内容 </div>
+					</div>
+				</div>
+				<div class="layui-col-md5">
+					<div class="layui-card">
+						<div class="layui-card-header">系统公告</div>
+						<div class="layui-card-body"> 放个公告内容 </div>
+					</div>
+				</div>
+				<div class="layui-col-md12">
+					<div class="layui-card">
+						<div class="layui-card-header">公告</div>
+						<div class="layui-card-body">
+							<div id="shang_box" class="shang_box">
+								<h2> 各位技术老师：</h2>
+								<p> 为方便给给你们打款（进度款、尾款等），将推行系统统一打款（每个周六支付符合结算条件的订单款），需要技术老师把个人的收款支付宝账户信息进行完善。</p>
+								<p> 操作方法：</p>
+								<p style="color: red; font-weight: bold; --darkreader-inline-color:#b4534b;" data-darkreader-inline-color="">
+									后续如果发现以上不诚信行为，一经核实直接取消合作关系，列入黑名单。 </p>
+								<p> 1、点击系统左边菜单栏【用户管理】。2、点击【个人信息】，打开个人信息页面；3、将[支付宝账户]和[支付宝真名]两项信息进行填充。 </p>
+								<p style="margin-bottom:30px;"></p>
+								<p style="text-align:right; padding-right:30px;margin-bottom:5px;"> 中信博文 </p>
+								<p style="text-align:right; padding-right:20px;">2018年11月24日</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<div class="layui-col-md4">
-    <div class="layui-card">
-        <div class="layui-card-header">
-
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-                <legend>  系统通告</legend>
-            </fieldset>
-        </div>
-        <div class="layui-card-body">
-
-        </div>
-    </div>
-</div>
-
-<br/>
-<div class="layui-col-md8">
-    <div class="layui-card">
-        <div class="layui-card-header">
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-                <legend> 在线沟通通知</legend>
-            </fieldset>
 
 
-        </div>
-        <div class="layui-card-body">
-            <div style="padding:0px 5px 0px 5px;">
-                <p>
-                    在线聊天是提供技术老师和我们的客户即时交流的一个桥梁，开发的目的是为了提高沟通效率，提升服务体验。我们倡导科学沟通，礼貌沟通，高效沟通，因此需要大家遵守以下条约：
-                </p>
-                <p>
-                    1、内容相关性。严禁在聊天过程中沟通订单需求以外的其他信息。
-                </p>
-                <p>
-                    2、用语文明礼貌。严禁在聊天过程中出现辱骂客户的行为，沟通双方都是平等的，相互理解，相互尊重。
-                </p>
-                <p>
-                    3、沟通有时不能实时回复。客户如果不在线，您可以留言。在确实有需要实时沟通的情况下，可以提前约定好双方都在线的时间集中交流。
-                </p>
-                <p>
-                    4、 禁止出现联系方式。为了双方交易的安全性，<font color="red">严禁在聊天过程中发送或索要个人联系方式等信息（如手机号码、QQ、邮箱、微信等）。否则所有后果自行承担。</font>
-                </p>
-                <p>
-                    5、 关于额外需求的处理流程。在沟通过程中，如果客户提出额外的需求，技术人员可以找管理员私聊反映。我们会根据新增需求的工作量，跟您和客户分别协商是否增加费用以及增加多少费用，<font
-                            color="red">严禁技术人员直接给客户报价，发现1次直接终止所有合作。</font>
-                </p>
-                <p>
-                    6、 如果设计已经全部完成，可在聊天工具里发演示截图给客户验收，并第一时间通知客户找我们付款，或通知管理员找客户收款。<font color="red">请勿在没有告知管理员的情况下直接上传全部源文件。</font>
-                </p>
-                <p>
-                    在开启聊天之前，默认您已经知晓并同意以上所有沟通条约。如您不同意，视为放弃合作。
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="layui-col-md4">
-    <div class="layui-card">
-        <div class="layui-card-header">
-            可能感兴趣的订单
-
-        </div>
-        <div class="layui-card-body">
-
-        </div>
-    </div>
-</div>
-<br/>
+   
 
 
 <script type="text/javascript" src="${base}/static/layui/layui.js"></script>

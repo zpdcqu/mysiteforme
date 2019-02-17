@@ -4,9 +4,18 @@ import com.xiaoleilu.hutool.date.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.mysiteforme.admin.entity.Demand;
 import com.mysiteforme.admin.entity.OrderList;
+import com.mysiteforme.admin.entity.OrderListVo;
+import com.mysiteforme.admin.entity.Role;
+import com.mysiteforme.admin.entity.User;
+import com.mysiteforme.admin.service.DemandService;
 import com.mysiteforme.admin.service.OrderListService;
+import com.mysiteforme.admin.service.RoleService;
+import com.mysiteforme.admin.service.UserService;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.mysiteforme.admin.util.EntityUtils;
 import com.mysiteforme.admin.util.LayerData;
 import com.mysiteforme.admin.util.RestResponse;
 import com.mysiteforme.admin.annotation.SysLog;
@@ -15,7 +24,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +40,7 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.ServletRequest;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * <p>
@@ -43,6 +58,13 @@ public class OrderListController {
     @Autowired
     private OrderListService orderListService;
 
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private DemandService demandService;
+    @Autowired RoleService roleService;
+   
+    
     @GetMapping("list")
     @SysLog("跳转订单列表列表")
     public String list(){
@@ -52,11 +74,11 @@ public class OrderListController {
     @PostMapping("list")
     @ResponseBody
     @SysLog("请求订单列表列表数据")
-    public LayerData<OrderList> list(@RequestParam(value = "page",defaultValue = "1")Integer page,
+    public LayerData<OrderListVo> list(@RequestParam(value = "page",defaultValue = "1")Integer page,
                                       @RequestParam(value = "limit",defaultValue = "10")Integer limit,
-                                      ServletRequest request){
+                                      ServletRequest request) throws IllegalAccessException, InvocationTargetException{
         Map map = WebUtils.getParametersStartingWith(request, "s_");
-        LayerData<OrderList> layerData = new LayerData<>();
+        LayerData<OrderListVo> layerData = new LayerData<>();
         EntityWrapper<OrderList> wrapper = new EntityWrapper<>();
         wrapper.eq("del_flag",false);
         if(!map.isEmpty()){
@@ -88,7 +110,7 @@ public class OrderListController {
             }else{
                 map.remove("endDeadDate");
             }
-
+            
             String money = (String) map.get("money");
             if(StringUtils.isNotBlank(money)) {
                 wrapper.like("money",money);
@@ -146,22 +168,75 @@ public class OrderListController {
 
         }
         Page<OrderList> pageData = orderListService.selectPage(new Page<>(page,limit),wrapper);
-        layerData.setData(pageData.getRecords());
+        List<OrderList> records = pageData.getRecords();
+        List<OrderListVo> vos = new ArrayList<>();
+        for (OrderList orderList : records) {
+        	OrderListVo vo = new OrderListVo();
+			BeanUtils.copyProperties(vo, orderList);
+			Long deadDate = vo.getDeadDate().getTime();
+			long currentTimeMillis = System.currentTimeMillis();
+			Long time = deadDate-currentTimeMillis;
+			int day = (int) (time/3600/24/1000);
+			int hour = (int) ((time-day*3600*24*1000)/3600/1000);
+			if(time >0) {
+				vo.setRemaining(day+"天"+hour+"小时");
+				vos.add(vo);
+			}else {
+				vo.setRemaining("已过期");
+			}
+			
+			
+		}
+        layerData.setData(vos);
         layerData.setCount(pageData.getTotal());
         return layerData;
     }
 
     @GetMapping("add")
     @SysLog("跳转新增订单列表页面")
-    public String add(){
+    public String add(Model model){
+    	int maxId =  orderListService.selectMaxId();
+    	String orderId = "R"+(21620+maxId);
+    	model.addAttribute("orderId", orderId);
+    	//关联用户的cid
+    	int  maxCid = userService.selectMaxCid()+3122; 
+    	String loginName = "C"+maxCid;
+    	model.addAttribute("loginName",loginName);
+    	
+    	//查询用户需求
+    	EntityWrapper<Demand> wrapper = new EntityWrapper<>();
+    	wrapper.eq("del_flag",false);
+		List<Demand> demandList = demandService.selectList(wrapper );
+		model.addAttribute("demandList", demandList);
         return "/admin/orderList/add";
     }
 
     @PostMapping("add")
     @SysLog("保存新增订单列表数据")
     @ResponseBody
-    public RestResponse add(OrderList orderList){
+    public RestResponse add(@RequestParam Map<Integer,String> remand,OrderList orderList,User user){
+    	
+    	orderList.setUserCId(user.getLoginName());
         orderListService.insert(orderList);
+        
+       
+        boolean ok = userService.insert(user);  
+        if(ok) {
+        	EntityWrapper<User> wrapper = new EntityWrapper<>();
+        	wrapper.eq("del_flag",false);
+        	wrapper.eq("login_name", user.getLoginName());
+        	User selectOne = userService.selectOne(wrapper);
+        	Long id = selectOne.getId(); 
+        	
+        	
+        	//设置用户的角色
+        	userService.dropUserRolesByUserId(id); 
+        	Set<Role> roleSet = new HashSet<>();
+        	Role role= new Role();
+        	role.setId(3L);
+        	roleSet.add(role);
+        	userService.saveUserRoles(id, roleSet);
+        }
         return RestResponse.success();
     }
 

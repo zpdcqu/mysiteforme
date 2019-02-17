@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
- * 客户需求 服务实现类
+ * 需求表 服务实现类
  * </p>
  *
  * @author wangl
- * @since 2019-01-20
+ * @since 2019-02-17
  */
 @Service
 @Transactional(rollbackFor = Exception.class)

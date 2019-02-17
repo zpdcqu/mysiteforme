@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>客户需求--${site.name}</title>
+    <title>需求表--${site.name}</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -19,7 +19,7 @@
 </head>
 <body class="childrenBody">
 <fieldset class="layui-elem-field">
-  <legend>客户需求检索</legend>
+  <legend>需求表检索</legend>
   <div class="layui-field-box">
     <form class="layui-form" id="searchForm">
     <div class="layui-inline" style="margin-left: 15px">
@@ -41,19 +41,6 @@
                 </select>
                 </div>
     </div>
-    <div class="layui-inline" style="margin-left: 15px">
-            <label>用途:</label>
-                <div class="layui-input-inline">
-                <select name="s_isOne">
-                    <option value="" selected="">请选择用途</option>
-                    <@my type="demand_isOne">
-                    <#list result as r>
-                    <option value="${r.value}" >${r.label}</option>
-                    </#list>
-                    </@my>
-                </select>
-                </div>
-    </div>
         <div class="layui-inline">
             <a class="layui-btn" lay-submit="" lay-filter="searchForm">查询</a>
         </div>
@@ -61,7 +48,7 @@
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
         <div class="layui-inline">
-            <a class="layui-btn layui-btn-normal" data-type="addDemand">添加客户需求</a>
+            <a class="layui-btn layui-btn-normal" data-type="addDemand">添加需求表</a>
         </div>
     </form>
   </div>
@@ -72,15 +59,6 @@
         <@my type="demand_type">
         <#list result as r>
         {{#  if(d.type == ${r.value}){ }}
-        <span>${r.label}</span>
-        {{#  } }}
-        </#list>
-        </@my>
-    </script>
-    <script type="text/html" id="isOne">
-        <@my type="demand_isOne">
-        <#list result as r>
-        {{#  if(d.isOne == ${r.value}){ }}
         <span>${r.label}</span>
         {{#  } }}
         </#list>
@@ -117,12 +95,12 @@
             var data = obj.data;
             if(obj.event === 'edit'){
                 var editIndex = layer.open({
-                    title : "编辑客户需求",
+                    title : "编辑需求表",
                     type : 2,
                     content : "${base}/admin/demand/edit?id="+data.id,
                     success : function(layero, index){
                         setTimeout(function(){
-                            layer.tips('点击此处返回客户需求列表', '.layui-layer-setwin .layui-layer-close', {
+                            layer.tips('点击此处返回需求表列表', '.layui-layer-setwin .layui-layer-close', {
                                 tips: 3
                             });
                         },500);
@@ -135,7 +113,7 @@
                 layer.full(editIndex);
             }
             if(obj.event === "del"){
-                layer.confirm("你确定要删除该客户需求么？",{btn:['是的,我确定','我再想想']},
+                layer.confirm("你确定要删除该需求表么？",{btn:['是的,我确定','我再想想']},
                         function(){
                             $.post("${base}/admin/demand/delete",{"id":data.id},function (res){
                                 if(res.success){
@@ -169,8 +147,8 @@
                 {type:'checkbox'},
                 {field:'name', title: '需求名称'},
                 {field:'type', title: '需求类型',templet:'#type'},
-                {field:'isOne', title: '用途',templet:'#isOne'},
-                {field:'delFlag',    title: '客户需求状态',width:'12%',templet:'#userStatus'},
+                {field:'option', title: '下拉选项'},
+                {field:'delFlag',    title: '需求表状态',width:'12%',templet:'#userStatus'},
                 {field:'createDate',  title: '创建时间',width:'15%',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
                 {fixed: 'right', title:'操作',  width: '15%', align: 'center',toolbar: '#barDemo'}
             ]]
@@ -180,12 +158,12 @@
         var active={
             addDemand : function(){
                 var addIndex = layer.open({
-                    title : "添加客户需求",
+                    title : "添加需求表",
                     type : 2,
                     content : "${base}/admin/demand/add",
                     success : function(layero, addIndex){
                         setTimeout(function(){
-                            layer.tips('点击此处返回客户需求列表', '.layui-layer-setwin .layui-layer-close', {
+                            layer.tips('点击此处返回需求表列表', '.layui-layer-setwin .layui-layer-close', {
                                 tips: 3
                             });
                         },500);

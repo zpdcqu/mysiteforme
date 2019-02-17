@@ -124,6 +124,27 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">其他需求</label>
+        <div class="layui-input-block">
+                <textarea name="others"   placeholder="请输入其他需求" class="layui-textarea">${orderList.others}</textarea>
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">课题方向</label>
+        <div class="layui-input-block">
+                <select name="subject" >
+                    <option value="" selected="">请选择课题方向</option>
+                    <@my type="order_list_subject">
+                    <#list result as r>
+                    <option value="${r.value}"  <#if (orderList.subject == r.value)> selected="" </#if>  >${r.label}</option>
+                    </#list>
+                    </@my>
+                </select>
+
+        </div>
+    </div>
+    <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit="" lay-filter="addOrderList">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -135,7 +156,8 @@
     layui.use(['form','jquery','layer','laydate'],function(){
         var form      = layui.form,
                 $     = layui.jquery,
-                layer = layui.layer;
+                layer = layui.layer,
+                laydate = layui.laydate;
 
                           //初始赋值
 
@@ -148,6 +170,7 @@
 
 
         form.on("submit(addOrderList)",function(data){
+        console.log("编辑")
                                if(null === data.field.deadDate || "" ===data.field.deadDate){
                                 delete data.field["deadDate"];
                             }else{

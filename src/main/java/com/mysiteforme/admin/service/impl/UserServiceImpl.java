@@ -136,4 +136,21 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 		baseMapper.updateById(user);
 	}
 
+/**
+ * 最大的cid
+ */
+	@Override
+	public int selectMaxCid() {
+		int maxCid =  baseMapper.selectMaxCid();
+		return maxCid;
+	}
+
+
+@Override
+public void updateUserRole(Long id) {
+	// TODO Auto-generated method stub
+	baseMapper.updateUserRole(id);
+	
+}
+
 }

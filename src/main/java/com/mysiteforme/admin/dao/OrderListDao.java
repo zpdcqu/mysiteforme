@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface OrderListDao extends BaseMapper<OrderList> {
 
+	int selectMaxId();
+
 }
