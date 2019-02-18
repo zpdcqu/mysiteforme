@@ -1,6 +1,9 @@
 package com.mysiteforme.admin.entity;
 
 import java.util.Date;
+
+import org.springframework.core.annotation.Order;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -32,6 +35,7 @@ public class OrderList extends DataEntity<OrderList> {
      * 截止时间
      */
 	@TableField("dead_date")
+	@Order
 	private Date deadDate;
     /**
      * 订单价格

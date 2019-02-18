@@ -40,7 +40,9 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.ServletRequest;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * <p>
@@ -81,6 +83,7 @@ public class OrderListController {
         LayerData<OrderListVo> layerData = new LayerData<>();
         EntityWrapper<OrderList> wrapper = new EntityWrapper<>();
         wrapper.eq("del_flag",false);
+        wrapper.orderBy("dead_date");
         if(!map.isEmpty()){
             String orderId = (String) map.get("orderId");
             if(StringUtils.isNotBlank(orderId)) {
@@ -167,6 +170,7 @@ public class OrderListController {
             }
 
         }
+        wrapper.orderBy("dead_date");
         Page<OrderList> pageData = orderListService.selectPage(new Page<>(page,limit),wrapper);
         List<OrderList> records = pageData.getRecords();
         List<OrderListVo> vos = new ArrayList<>();
@@ -180,11 +184,11 @@ public class OrderListController {
 			int hour = (int) ((time-day*3600*24*1000)/3600/1000);
 			if(time >0) {
 				vo.setRemaining(day+"天"+hour+"小时");
-				vos.add(vo);
+				
 			}else {
 				vo.setRemaining("已过期");
 			}
-			
+			vos.add(vo);
 			
 		}
         layerData.setData(vos);
@@ -214,7 +218,7 @@ public class OrderListController {
     @PostMapping("add")
     @SysLog("保存新增订单列表数据")
     @ResponseBody
-    public RestResponse add(@RequestParam Map<Integer,String> remand,OrderList orderList,User user){
+    public RestResponse add(@RequestParam Map<String,String> remand,OrderList orderList,User user){
     	
     	orderList.setUserCId(user.getLoginName());
         orderListService.insert(orderList);
@@ -237,6 +241,18 @@ public class OrderListController {
         	roleSet.add(role);
         	userService.saveUserRoles(id, roleSet);
         }
+        
+        for (Entry<String, String> entry : remand.entrySet()) {
+        	String key = entry.getKey();
+        	String value = 	entry.getValue();
+        	Pattern pattern = Pattern.compile("[0-9]*");
+        	if( pattern.matcher(key).matches()) {
+        		System.out.println(key+":"+value);
+        	}
+        	
+        	}
+        
+        
         return RestResponse.success();
     }
 
