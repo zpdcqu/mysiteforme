@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example1</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>mysite</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -56,7 +56,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
-		
+		<!-- 
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-devtools</artifactId>
+		    <version>1.5.8.RELEASE</version>
+		</dependency -->
+
+
+
 
 		<!--<dependency>-->
 			<!--<groupId>javax.websocket</groupId>-->
@@ -303,7 +311,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.0.0.RELEASE</version>
 			</plugin>
+
 		</plugins>
 	</build>
 

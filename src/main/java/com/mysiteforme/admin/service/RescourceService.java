@@ -16,4 +16,6 @@ public interface RescourceService extends IService<Rescource> {
 
     Rescource getRescourceByHash(String hash);
 
+	void saveOrderId(String value, Long id);
+
 }

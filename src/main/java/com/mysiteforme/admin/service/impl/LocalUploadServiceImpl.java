@@ -20,6 +20,8 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
+
 @Service("localService")
 public class LocalUploadServiceImpl implements UploadService {
     @Override
@@ -28,19 +30,23 @@ public class LocalUploadServiceImpl implements UploadService {
         QETag tag = new QETag();
         Rescource rescource = new Rescource();
         String hash = tag.calcETag(file);
-        EntityWrapper<RestResponse> wrapper = new EntityWrapper<>();
+        EntityWrapper<Rescource> wrapper = new EntityWrapper<>();
         wrapper.eq("hash",hash);
         wrapper.eq("source","local");
         rescource = rescource.selectOne(wrapper);
         if( rescource!= null){
-            return rescource.getWebUrl();
+            hash = "hash"+1;
         }
         String extName = file.getOriginalFilename().substring(
                 file.getOriginalFilename().lastIndexOf("."));
-        String fileName = UUID.randomUUID() + extName;
+//        String fileName = UUID.randomUUID() + extName;
+        String fileName = file.getOriginalFilename();
         String contentType = file.getContentType();
-        StringBuffer sb = new StringBuffer(ResourceUtils.getURL("classpath:").getPath());
-        String filePath = sb.append("static/upload/").toString();
+//        StringBuffer sb = new StringBuffer(ResourceUtils.getURL("classpath:").getPath());
+        File directory = new File("");// 参数为空
+        StringBuffer sb = new StringBuffer(directory.getCanonicalPath());
+        String filePath = sb.append(File.separator).append("upload").append(File.separator).toString();
+        System.out.println(filePath);
         File targetFile = new File(filePath);
         if(!targetFile.exists()){
             targetFile.mkdirs();
@@ -49,16 +55,16 @@ public class LocalUploadServiceImpl implements UploadService {
         out.write(data);
         out.flush();
         out.close();
-        String webUrl = "/static/upload/"+fileName;
+//        String webUrl = "/upload/"+hash;
         rescource = new Rescource();
         rescource.setFileName(fileName);
         rescource.setFileSize(new java.text.DecimalFormat("#.##").format(file.getSize()/1024)+"kb");
         rescource.setHash(hash);
         rescource.setFileType(contentType);
-        rescource.setWebUrl(webUrl);
+//        rescource.setWebUrl(webUrl);
         rescource.setSource("local");
         rescource.insert();
-        return webUrl;
+        return hash;
     }
 
     @Override
@@ -76,7 +82,7 @@ public class LocalUploadServiceImpl implements UploadService {
     @Override
     public String uploadNetFile(String url) throws IOException, NoSuchAlgorithmException {
         Rescource rescource = new Rescource();
-        EntityWrapper<RestResponse> wrapper = new EntityWrapper<>();
+        EntityWrapper<Rescource> wrapper = new EntityWrapper<>();
         wrapper.eq("original_net_url",url);
         wrapper.eq("source","local");
         rescource = rescource.selectOne(wrapper);

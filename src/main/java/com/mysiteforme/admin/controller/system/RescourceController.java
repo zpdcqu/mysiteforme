@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.mysiteforme.admin.annotation.SysLog;
 import com.mysiteforme.admin.base.BaseController;
 import com.mysiteforme.admin.entity.Rescource;
+import com.mysiteforme.admin.service.FileService;
 import com.mysiteforme.admin.util.LayerData;
 import com.mysiteforme.admin.util.QiniuFileUtil;
 import com.mysiteforme.admin.util.RestResponse;
@@ -12,11 +13,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.ServletRequest;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +34,8 @@ import java.util.Map;
 @RequestMapping("/admin/system/rescource")
 public class RescourceController extends BaseController{
     private static final Logger LOGGER = LoggerFactory.getLogger(RescourceController.class);
-
+    @Autowired
+    FileService fileService;
     @GetMapping("list")
     @SysLog("跳转资源展示列表")
     public String list(){
@@ -36,7 +43,7 @@ public class RescourceController extends BaseController{
     }
 
     @RequiresPermissions("sys:rescource:list")
-    @PostMapping("list")
+    @PostMapping("list") 
     @ResponseBody
     public LayerData<Rescource> list(@RequestParam(value = "page",defaultValue = "1")Integer page,
                                      @RequestParam(value = "limit",defaultValue = "10")Integer limit,
@@ -64,25 +71,54 @@ public class RescourceController extends BaseController{
         return layerData;
     }
 
-    @RequiresPermissions("sys:rescource:delete")
+//    @RequiresPermissions("sys:rescource:delete")
+//    @PostMapping("delete")
+//    @SysLog("删除系统资源")
+//    @ResponseBody
+//    public RestResponse delete(@RequestParam("ids[]") List<Long> ids){
+//        if(ids == null || ids.size() == 0){
+//            return RestResponse.failure("删除ID不能为空");
+//        }
+//        List<Rescource> rescources = rescourceService.selectBatchIds(ids);
+//        if(rescources == null || rescources.size()==0){
+//            return RestResponse.failure("请求参数不正确");
+//        }
+//        for (Rescource rescource : rescources){
+//            QiniuFileUtil.deleteQiniuP(rescource.getWebUrl());
+//        }
+//        rescourceService.deleteBatchIds(ids);
+//        return RestResponse.success();
+//    }
+
+    
     @PostMapping("delete")
-    @SysLog("删除系统资源")
     @ResponseBody
-    public RestResponse delete(@RequestParam("ids[]") List<Long> ids){
-        if(ids == null || ids.size() == 0){
-            return RestResponse.failure("删除ID不能为空");
+    @SysLog("删除上传文件表数据")
+    public RestResponse delete(@RequestParam(value = "hash",required = false)String hash) throws FileNotFoundException{
+        if(null == hash || "" == hash){
+            return RestResponse.failure("hash不能为空");
         }
-        List<Rescource> rescources = rescourceService.selectBatchIds(ids);
-        if(rescources == null || rescources.size()==0){
-            return RestResponse.failure("请求参数不正确");
-        }
-        for (Rescource rescource : rescources){
-            QiniuFileUtil.deleteQiniuP(rescource.getWebUrl());
-        }
-        rescourceService.deleteBatchIds(ids);
+        
+        Rescource rescource = new Rescource();
+        EntityWrapper<Rescource> wrapper = new EntityWrapper<>();
+        wrapper.eq("hash",hash);
+        wrapper.eq("source","local");
+        rescource = rescource.selectOne(wrapper);
+       
+        StringBuffer sb = new StringBuffer(ResourceUtils.getURL("classpath:").getPath());
+        String path = sb.append("/upload/").append(rescource.getFileName()).toString();
+        
+        File file = new File(path); 
+	       if(file.exists()&&file.isFile()) {
+	       	   file.delete();
+	       } 
+	    
+        fileService.deleteByHash(hash);
+        
         return RestResponse.success();
     }
-
+    
+    
     @GetMapping("test")
     @SysLog("测试错误请求")
     public String error() throws Exception {

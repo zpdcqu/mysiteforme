@@ -26,7 +26,7 @@ public class OrderList extends DataEntity<OrderList> {
      * 订单编号
      */
 	@TableField("order_id")
-	private String orderId;
+	private String orderId;	
     /**
      * 订单名称
      */
@@ -54,7 +54,7 @@ public class OrderList extends DataEntity<OrderList> {
      * 关联技术
      */
 	@TableField("user_t_id")
-	private Integer userTId;
+	private String userTId;
     /**
      * 课程等级
      */
@@ -72,6 +72,19 @@ public class OrderList extends DataEntity<OrderList> {
      * 其他需求
      */
 	private String others;
+	
+	private int subject;
+	
+
+
+
+	public int getSubject() {
+		return subject;
+	}
+
+	public void setSubject(int subject) {
+		this.subject = subject;
+	}
 
 	public String getOrderId() {
 		return orderId;
@@ -115,11 +128,11 @@ public class OrderList extends DataEntity<OrderList> {
 	public void setCategories(Integer categories) {
 		this.categories = categories;
 	}
-	public Integer getUserTId() {
+	public String getUserTId() {
 		return userTId;
 	}
 
-	public void setUserTId(Integer userTId) {
+	public void setUserTId(String userTId) {
 		this.userTId = userTId;
 	}
 	public Integer getLevel() {

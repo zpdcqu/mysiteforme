@@ -1,6 +1,6 @@
 package com.mysiteforme.admin.entity;
 
-import java.util.Date;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.mysiteforme.admin.base.DataEntity;
 
@@ -10,7 +10,7 @@ import com.mysiteforme.admin.base.DataEntity;
  * </p>
  *
  * @author wangl
- * @since 2019-01-20
+ * @since 2019-02-22
  */
 public class File extends DataEntity<File> {
 
@@ -19,69 +19,60 @@ public class File extends DataEntity<File> {
     /**
      * 标题
      */
-	private String name;
+	@TableField("file_name")
+	private String fileName;
     /**
      * 描述
      */
-	private String description;
+	private String hash;
     /**
-     * 上传人
+     * 关联订单id
      */
-	private String uploadUser;
+	@TableField("order_id")
+	private Long orderId;
     /**
-     * 长传/下载日期
+     * 文件大小
      */
-	private Date date;
-    /**
-     * 链接地址
-     */
-	private String url;
+	@TableField("file_size")
+	private String fileSize;
 
-	public String getName() {
-		return name;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getUploadUser() {
-		return uploadUser;
+	public String getHash() {
+		return hash;
 	}
 
-	public void setUploadUser(String uploadUser) {
-		this.uploadUser = uploadUser;
+	public void setHash(String hash) {
+		this.hash = hash;
 	}
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public String getUrl() {
-		return url;
+	public Long getOrderId() {
+		return orderId;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+	public String getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
 	}
 
 
 	@Override
 	public String toString() {
 		return "File{" +
-			", name=" + name +
-			", description=" + description +
-			", uploadUser=" + uploadUser +
-			", date=" + date +
-			", url=" + url +
+			", fileName=" + fileName +
+			", hash=" + hash +
+			", orderId=" + orderId +
+			", fileSize=" + fileSize +
 			"}";
 	}
 }

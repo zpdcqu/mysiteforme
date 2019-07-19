@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface FileDao extends BaseMapper<File> {
 
+	void deleteByHash(String hash);
+
+	void deleteOrderFileByHash(String hash);
+
 }

@@ -1,10 +1,13 @@
 package com.mysiteforme.admin.controller.system;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.mysiteforme.admin.annotation.SysLog;
+import com.mysiteforme.admin.entity.Rescource;
 import com.mysiteforme.admin.entity.Site;
 import com.mysiteforme.admin.service.UploadService;
+import com.mysiteforme.admin.util.QETag;
 import com.mysiteforme.admin.util.QiniuFileUtil;
 import com.mysiteforme.admin.util.RestResponse;
 import com.mysiteforme.admin.util.ToolUtil;
@@ -19,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sun.net.www.protocol.http.HttpURLConnection;
@@ -28,6 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
@@ -66,7 +71,7 @@ public class FilesController {
     @PostMapping("upload")
     @ResponseBody
     @SysLog("文件上传")
-    public RestResponse uploadFile(@RequestParam("test") MultipartFile file,HttpServletRequest httpServletRequest) {
+    public RestResponse uploadFile(@RequestParam("test") MultipartFile file,HttpServletRequest httpServletRequest) throws NoSuchAlgorithmException, IOException {
         Site site = (Site)httpServletRequest.getAttribute("site");
         if(site == null){
             return RestResponse.failure("加载信息错误");
@@ -76,10 +81,12 @@ public class FilesController {
             return RestResponse.failure("上传文件为空 ");
         }
         String url = null;
+        QETag tag = new QETag();
+        String hash = tag.calcETag(file);
         Map m = Maps.newHashMap();
         try {
             if("local".equals(site.getFileUploadType())){
-                url = localService.upload(file);
+                hash = localService.upload(file);
             }
             if("qiniu".equals(site.getFileUploadType())){
                 url = qiniuService.upload(file);
@@ -87,7 +94,7 @@ public class FilesController {
             if("oss".equals(site.getFileUploadType())){
                 url = ossService.upload(file);
             }
-            m.put("url", url);
+            m.put("hash", hash);
             m.put("name", file.getOriginalFilename());
         } catch (Exception e) {
             e.printStackTrace();
@@ -218,34 +225,49 @@ public class FilesController {
     @GetMapping("download")
     @ResponseBody
     @SysLog("文件下载")
-    public RestResponse downFile(@RequestParam(value="url",required = false) String realurl,
+    public RestResponse downFile(@RequestParam(value="hash",required = false) String hash,
                                  @RequestParam(value="name",required = false) String name,
                                  HttpServletResponse response) throws IOException {
-        if(StringUtils.isBlank(realurl)){
-            return RestResponse.failure("图片地址不能为空");
-        }
-        if(StringUtils.isBlank(name)){
-            return RestResponse.failure("图片名称不能为空");
-        }
-        if("text/html".equals(ToolUtil.getContentType(name))){
-            return RestResponse.failure("图片格式不正确");
-        }
-        name = new String(name.getBytes("GB2312"),"ISO8859-1");
-        URL url=new URL(realurl);
-        HttpURLConnection conn=(HttpURLConnection)url.openConnection();
-        conn.connect();
-        BufferedInputStream br = new BufferedInputStream(conn.getInputStream());
+//        if(StringUtils.isBlank(realurl)){
+//            return RestResponse.failure("图片地址不能为空");
+//        }
+//        if(StringUtils.isBlank(name)){
+//            return RestResponse.failure("图片名称不能为空");
+//        }
+//        if("text/html".equals(ToolUtil.getContentType(name))){
+//            return RestResponse.failure("图片格式不正确");
+//        }
+//        name = new String(name.getBytes("GB2312"),"ISO8859-1");
+//        URL url=new URL(realurl);
+//        HttpURLConnection conn=(HttpURLConnection)url.openConnection();
+//        conn.connect();
+//        BufferedInputStream br = new BufferedInputStream(conn.getInputStream());
+    	  Rescource rescource = new Rescource();
+    	 EntityWrapper<RestResponse> wrapper = new EntityWrapper<>();
+         wrapper.eq("hash",hash);
+         wrapper.eq("source","local");
+         wrapper.eq("del_flag", 0);
+        
+         rescource = rescource.selectOne(wrapper);
+         
+        File directory = new File("");// 参数为空
+        StringBuffer sb = new StringBuffer(directory.getCanonicalPath());
+      
+        String filePath = sb.append(File.separator).append("upload").append(File.separator).append(rescource.getFileName()).toString();
+        FileInputStream br = new FileInputStream(new File(filePath));
+        
         byte[] buf = new byte[1024];
         int len = 0;
         response.reset();
         response.setHeader("Content-type","application/octet-stream");
-        response.setHeader("Content-Disposition", "attachment; filename="+name);
+        String filename = new String(rescource.getFileName().getBytes("utf-8"), "ISO8859-1");
+        response.setHeader("Content-Disposition", "attachment; filename="+filename);
         ServletOutputStream out = response.getOutputStream();
         while ((len = br.read(buf)) > 0) out.write(buf, 0, len);
         br.close();
         out.flush();
         out.close();
-        conn.disconnect();
+ 
         return RestResponse.success();
     }
 

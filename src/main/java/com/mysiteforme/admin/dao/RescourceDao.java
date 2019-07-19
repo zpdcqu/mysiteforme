@@ -1,6 +1,9 @@
 package com.mysiteforme.admin.dao;
 
 import com.mysiteforme.admin.entity.Rescource;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface RescourceDao extends BaseMapper<Rescource> {
 
+	void saveOrderId(@Param("hash")String value,@Param("id") Long id);
+
+	
 }

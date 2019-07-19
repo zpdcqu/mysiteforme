@@ -12,4 +12,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface FileService extends IService<File> {
 
+	void deleteByHash(String hash);
+
 }

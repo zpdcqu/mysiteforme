@@ -93,7 +93,7 @@
     <!-- 左侧导航 -->
     <div class="layui-side layui-bg-black">
         <div class="user-photo">
-            <a class="img" title="我的头像" ><img src="<#if (currentUser.icon??)>${currentUser.icon}<#else>${base}/static/images/face.jpg</#if>"></a>
+            <a class="img" title="我的头像" ><img src="${base}/static/images/logo.jpg"></a>
             <p>你好！<span class="userName"><#if currentUser.nickName!''>${currentUser.nickName}<#else>${currentUser.loginName}</#if></span>, 欢迎登录</p>
         </div>
         <div class="navBar layui-side-scroll"></div>
@@ -137,5 +137,15 @@
 <script type="text/javascript" src="${base}/static/js/leftNav.js?v=2.0"></script>
 <script type="text/javascript" src="${base}/static/js/index.js?t=3.0"></script>
 <script type="text/javascript" src="${base}/static/js/mine.js"></script>
+<script type="text/javascript" >
+
+window.onload=function(){
+ 
+ 	document.getElementsByTagName('body')[0].style.zoom=0.9
+	
+
+ 
+}
+</script>
 </body>
 </html>

@@ -7,6 +7,7 @@ E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\Exception
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\impl\UploadInfoServiceImpl.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\QuartzTaskLogController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\dao\TableDao.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\Operating.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\base\BaseController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\RestResponse.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\config\QuartzConfig.java
@@ -18,6 +19,7 @@ E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\web
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\system\UserConteroller.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\exception\MyException.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\impl\LogServiceImpl.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\OperatingService.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\MyCompare.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\dao\BlogTagsDao.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\config\WebMvcConfigurer.java
@@ -43,6 +45,7 @@ E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\dao\DemandDao.
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\freemark\TagsTempletModel.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\VerifyCodeUtil.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\dao\MenuDao.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\OperatingController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\OrderListService.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\quartz\ScheduleRunnable.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\lucene\LuceneSearch.java
@@ -61,6 +64,7 @@ E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\ToolUtil.
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\freemark\CommentNumberTempletModel.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\DictService.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\redis\CacheUtils.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\dao\OperatingDao.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\dao\UploadInfoDao.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\dao\GroupDao.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\SessionUtil.java
@@ -68,16 +72,16 @@ E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\base\DataEntit
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\system\RescourceController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\system\SiteController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\BlogArticleController.java
-E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\order\HallController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\system\TableController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\system\LogController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\impl\LocalUploadServiceImpl.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\OrderListAdd.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\UploadInfoService.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\BlogCommentController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\Group.java
-E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\order\OrderController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\redis\RedisSessionDAO.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\MenuService.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\HallController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\order\OrderService.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\impl\UserServiceImpl.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\base\TreeEntity.java
@@ -92,6 +96,7 @@ E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\redis\RedisCac
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\BlogChannelService.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\impl\BlogArticleServiceImpl.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\dao\FileDao.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\UserDemand.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\SpringContextHolder.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\base\CaptchaFormAuthenticationFilter.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\system\FilesController.java
@@ -103,6 +108,7 @@ E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\Menu.ja
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\VO\TableField.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\system\DictController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\annotation\SysLog.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\EntityUtils.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\base\BlogHandlerInterceptor.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\redis\RedisObjectSerializer.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\LoginController.java
@@ -147,11 +153,13 @@ E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\DigestUti
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\freemark\ArticleClickTempletModel.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\Role.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\VO\ShowMenu.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\UserDemandVo.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\dao\RoleDao.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\impl\QuartzTaskLogServiceImpl.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\UserService.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\config\RedisCacheConfig.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\freemark\ParentChannelListDirective.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\impl\OperatingServiceImpl.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\impl\MenuServiceImpl.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\BlogComment.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\impl\BlogTagsServiceImpl.java
@@ -159,12 +167,12 @@ E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\freemark\BaseD
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\config\FreemarkerConfig.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\config\ShiroConfig.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\freemark\IndexArticleDirective.java
-E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\FileController.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\config\SysMetaObjectHandler.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\impl\OrderListServiceImpl.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\base\MyHandlerInterceptor.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\util\Encodes.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\service\LogService.java
+E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\OrderListVo.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\entity\VO\TableVO.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\exception\GlobalExceptionHandler.java
 E:\githubProject\mysiteforme5\src\main\java\com\mysiteforme\admin\controller\system\RoleController.java

@@ -33,4 +33,10 @@ public class RescourceServiceImpl extends ServiceImpl<RescourceDao, Rescource> i
         wrapper.eq("hash",hash);
         return selectOne(wrapper);
     }
+
+	@Override
+	public void saveOrderId(String value, Long id) {
+		// TODO Auto-generated method stub
+		baseMapper.saveOrderId(value,id);
+	}
 }

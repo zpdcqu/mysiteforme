@@ -19,4 +19,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 public class FileServiceImpl extends ServiceImpl<FileDao, File> implements FileService {
 
+	@Override
+	public void deleteByHash(String hash) {
+		// TODO Auto-generated method stub
+		
+		baseMapper.deleteByHash(hash);
+		baseMapper.deleteOrderFileByHash(hash);
+	}
+
 }

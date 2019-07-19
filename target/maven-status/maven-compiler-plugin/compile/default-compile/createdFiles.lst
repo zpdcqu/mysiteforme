@@ -12,6 +12,7 @@ com\mysiteforme\admin\service\impl\BlogCommentServiceImpl.class
 com\mysiteforme\admin\service\MenuService.class
 com\mysiteforme\admin\util\SessionUtil.class
 com\mysiteforme\admin\redis\RedisCacheManager.class
+com\mysiteforme\admin\entity\OrderListVo.class
 com\mysiteforme\admin\base\CaptchaFormAuthenticationFilter.class
 com\mysiteforme\admin\service\impl\RoleServiceImpl.class
 com\mysiteforme\admin\config\ShiroConfig.class
@@ -20,11 +21,11 @@ com\mysiteforme\admin\service\RescourceService.class
 com\mysiteforme\admin\MysiteformeApplication.class
 com\mysiteforme\admin\dao\OrderDao.class
 com\mysiteforme\admin\service\SiteService.class
-com\mysiteforme\admin\controller\order\HallController.class
 com\mysiteforme\admin\entity\File.class
 com\mysiteforme\admin\service\QuartzTaskService.class
 com\mysiteforme\admin\service\order\impl\OrderServiceImpl.class
 com\mysiteforme\admin\util\GenEntityMySql$1.class
+com\mysiteforme\admin\util\EntityUtils.class
 com\mysiteforme\admin\realm\AuthRealm$ShiroUser.class
 com\mysiteforme\admin\service\BlogTagsService.class
 com\mysiteforme\admin\service\RoleService.class
@@ -128,6 +129,7 @@ com\mysiteforme\admin\controller\DruidController.class
 com\mysiteforme\admin\freemark\SystemDirective.class
 com\mysiteforme\admin\controller\system\DictController.class
 com\mysiteforme\admin\base\MyBatisDao.class
+com\mysiteforme\admin\entity\OrderListAdd.class
 com\mysiteforme\admin\util\CreateTableFiles$1.class
 com\mysiteforme\admin\entity\BlogComment.class
 com\mysiteforme\admin\service\BlogChannelService.class
@@ -149,7 +151,6 @@ com\mysiteforme\admin\controller\OrderListController.class
 com\mysiteforme\admin\util\quartz\task\SystemTask.class
 com\mysiteforme\admin\service\impl\FileServiceImpl.class
 com\mysiteforme\admin\config\QuartzConfig.class
-com\mysiteforme\admin\controller\order\OrderController.class
 com\mysiteforme\admin\dao\RoleDao.class
 com\mysiteforme\admin\entity\VO\TableVO.class
 com\mysiteforme\admin\freemark\ParentChannelListDirective.class
@@ -183,7 +184,6 @@ com\mysiteforme\admin\dao\BlogArticleDao.class
 com\mysiteforme\admin\config\WebMvcConfigurer.class
 com\mysiteforme\admin\entity\Rescource.class
 com\mysiteforme\admin\service\BlogArticleService.class
-com\mysiteforme\admin\controller\FileController.class
 com\mysiteforme\admin\controller\MoneyLogController.class
 com\mysiteforme\admin\service\OrderListService.class
 com\mysiteforme\admin\controller\DemandController.class

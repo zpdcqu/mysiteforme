@@ -19,7 +19,7 @@
 </head>
 <body class="childrenBody">
 <fieldset class="layui-elem-field">
-  <legend>订单列表检索</legend>
+  <legend>订单检索</legend>
   <div class="layui-field-box">
     <form class="layui-form" id="searchForm">
     <div class="layui-inline" style="margin-left: 15px">
@@ -117,8 +117,8 @@
         <div class="layui-inline" >
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
-        <div class="layui-inline">
-            <a class="layui-btn layui-btn-normal" data-type="addOrderList">添加订单列表</a>
+		 <div class="layui-inline">
+            <a class="layui-btn layui-btn-normal" data-type="addOrderList">添加订单</a>
         </div>
     </form>
   </div>
@@ -265,24 +265,28 @@
                 groups: 2, //只显示 1 个连续页码
                 first: "首页", //显示首页
                 last: "尾页", //显示尾页
-                limits:[3,10, 20, 30]
+                limits:[3,10, 20, 30,100000]
             },
+            size: 'sm',
             cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+              totalRow: true ,//开启合计行
+              toolbar: 'default', //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+               defaultToolbar: ['filter', 'print', 'exports'],
             cols: [[
                 {type:'checkbox'},
-                {field:'orderId', title: '订单编号'},
-                {field:'name', title: '订单名称'},
-                 {field:'categories', title: '所属类别',templet:'#categories'},
-                {field:'deadDate',  title: '截止时间',templet:'<div>{{ layui.laytpl.toDateString(d.deadDate,"yyyy-MM-dd") }}</div>',unresize: true},
-                {field:'remaining', title: '剩余时间',templet:'#remaining'},
-                {field:'money', title: '订单价格'},
-                {field:'userCId', title: '关联客户'},              
-                {field:'userTId', title: '接单人'},
-         //       {field:'level', title: '课程等级',templet:'#level'},
-           //     {field:'vip', title: '是否加急',templet:'#isVip'},
-                {field:'progress', title: '订单进度',templet:'#progress'},
-         //       {field:'delFlag',    title: '订单列表状态',width:'12%',templet:'#userStatus'},
-           //     {field:'createDate',  title: '创建时间',width:'15%',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
+                {field:'orderId',sort: true, title: '订单编号'},
+                {field:'name',sort: true, title: '订单名称'},
+                 {field:'categories',sort: true, title: '所属类别',templet:'#categories'},
+                {field:'deadDate',sort: true,  title: '截止时间',templet:'<div>{{ layui.laytpl.toDateString(d.deadDate,"yyyy-MM-dd") }}</div>',unresize: true},
+                {field:'remaining',sort: true, title: '剩余时间',templet:'#remaining'},
+                {field:'money',sort: true, title: '订单价格'},
+                {field:'userCId',sort: true, title: '关联客户'},              
+                {field:'userTId',sort: true, title: '接单人'},
+                {field:'level',sort: true, title: '课程等级',templet:'#level'},
+                {field:'vip',sort: true, title: '是否加急',templet:'#isVip'},
+                {field:'progress',sort: true, title: '订单进度',templet:'#progress'},
+               // {field:'delFlag',    title: '订单列表状态',width:'12%',templet:'#userStatus'},
+                {field:'createDate',sort: true,  title: '创建时间',width:'15%',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
                 {fixed: 'right', title:'操作',  width: '15%', align: 'center',toolbar: '#barDemo'}
             ]]
         };

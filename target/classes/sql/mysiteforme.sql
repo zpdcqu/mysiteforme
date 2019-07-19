@@ -959,10 +959,10 @@ INSERT INTO `sys_menu` VALUES ('61', '七牛云存储信息', '7', '3', '1,7,61,
 INSERT INTO `sys_menu` VALUES ('62', '阿里云信息存储', '7', '3', '1,7,62,', '20', '', null, null, null, '0', 'sys:site:editOss', '1', '2018-07-12 18:47:05', '1', '2018-07-12 18:47:05', null, '0');
 
 -- ----------------------------
--- Table structure for sys_rescource
+-- Table structure for sys_resource
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_rescource`;
-CREATE TABLE `sys_rescource` (
+DROP TABLE IF EXISTS `sys_resource`;
+CREATE TABLE `sys_resource` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `file_name` varchar(255) DEFAULT NULL COMMENT '文件名称',
   `source` varchar(255) DEFAULT NULL COMMENT '来源',
@@ -981,11 +981,11 @@ CREATE TABLE `sys_rescource` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统资源';
 
 -- ----------------------------
--- Records of sys_rescource
+-- Records of sys_resource
 -- ----------------------------
-INSERT INTO `sys_rescource` VALUES ('2', '77861034-25ef-4856-87ec-24da18398ecf.jpg', 'qiniu', 'https://static.mysiteforme.com/77861034-25ef-4856-87ec-24da18398ecf.jpg', 'FvRpJ_-DlF-eFJ4l28xVGVUsHRCX', '105kb', '.jpg', null, '2018-02-08 13:57:44', '1', '2018-02-08 13:57:44', '1', null, '0');
-INSERT INTO `sys_rescource` VALUES ('3', '04ea0ce0-e53b-4eb3-b1ea-dc316063d29f.jpg', 'qiniu', 'https://static.mysiteforme.com/04ea0ce0-e53b-4eb3-b1ea-dc316063d29f.jpg', 'FrJ5IUYX0zMw5HpDW4fUfNvMv4Q3', '329kb', '.jpg', null, '2018-02-08 13:59:06', '1', '2018-02-08 13:59:06', '1', null, '0');
-INSERT INTO `sys_rescource` VALUES ('4', '3e2baf40-f2e5-4b3c-93d1-3f97965017ec.jpg', 'qiniu', 'https://static.mysiteforme.com/3e2baf40-f2e5-4b3c-93d1-3f97965017ec.jpg', 'FpgHWPFgcyMX1lqNEDk8Pdnl3lsu', '228kb', '.jpg', null, '2018-03-13 12:54:36', '1', '2018-03-13 12:54:36', '1', null, '0');
+INSERT INTO `sys_resource` VALUES ('2', '77861034-25ef-4856-87ec-24da18398ecf.jpg', 'qiniu', 'https://static.mysiteforme.com/77861034-25ef-4856-87ec-24da18398ecf.jpg', 'FvRpJ_-DlF-eFJ4l28xVGVUsHRCX', '105kb', '.jpg', null, '2018-02-08 13:57:44', '1', '2018-02-08 13:57:44', '1', null, '0');
+INSERT INTO `sys_resource` VALUES ('3', '04ea0ce0-e53b-4eb3-b1ea-dc316063d29f.jpg', 'qiniu', 'https://static.mysiteforme.com/04ea0ce0-e53b-4eb3-b1ea-dc316063d29f.jpg', 'FrJ5IUYX0zMw5HpDW4fUfNvMv4Q3', '329kb', '.jpg', null, '2018-02-08 13:59:06', '1', '2018-02-08 13:59:06', '1', null, '0');
+INSERT INTO `sys_resource` VALUES ('4', '3e2baf40-f2e5-4b3c-93d1-3f97965017ec.jpg', 'qiniu', 'https://static.mysiteforme.com/3e2baf40-f2e5-4b3c-93d1-3f97965017ec.jpg', 'FpgHWPFgcyMX1lqNEDk8Pdnl3lsu', '228kb', '.jpg', null, '2018-03-13 12:54:36', '1', '2018-03-13 12:54:36', '1', null, '0');
 
 -- ----------------------------
 -- Table structure for sys_role

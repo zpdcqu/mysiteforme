@@ -8,6 +8,7 @@ import com.mysiteforme.admin.base.BaseController;
 import com.mysiteforme.admin.base.MySysUser;
 import com.mysiteforme.admin.entity.*;
 import com.mysiteforme.admin.entity.Menu;
+import com.mysiteforme.admin.service.OperatingService;
 import com.mysiteforme.admin.util.Constants;
 import com.mysiteforme.admin.util.RestResponse;
 import com.mysiteforme.admin.util.VerifyCodeUtil;
@@ -19,6 +20,7 @@ import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +43,9 @@ public class LoginController extends BaseController {
 
 	@Value("${server.port}")
 	private String port;
+	
+	@Autowired
+	private OperatingService operatorService;
 
 	@GetMapping("login")
 	public String login(HttpServletRequest request) {
@@ -117,6 +122,8 @@ public class LoginController extends BaseController {
 	
 	@GetMapping("index")
 	public String showView(Model model){
+		
+		
 		return "index";
 	}
 
@@ -191,8 +198,9 @@ public class LoginController extends BaseController {
 		showMenus.add(myMessage);
 
 		showMenus.sort(new MenuComparator());
-
+		String content = operatorService.selectById(2L).getContent();
 		model.addAttribute("userMenu",showMenus);
+		model.addAttribute("content", content);
 		return "main";
 	}
 

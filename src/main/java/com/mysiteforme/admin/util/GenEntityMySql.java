@@ -64,7 +64,7 @@ public class GenEntityMySql {
         strategy.setTablePrefix(new String[] { "sys_"});// 此处可以修改为您的表前缀
 
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        strategy.setInclude(new String[] { "sys_rescource"}); // 需要生成的表
+        strategy.setInclude(new String[] { "sys_resource"}); // 需要生成的表
 //        strategy.setExclude(new String[]{"sys_user_role","sys_role_menu","sys_group_ur"}); // 排除生成的表
         // 自定义实体父类
         strategy.setSuperEntityClass("com.mysiteforme.admin.base.DataEntity");

@@ -12,7 +12,7 @@ import com.mysiteforme.admin.base.DataEntity;
  * @author wangl
  * @since 2018-01-14
  */
-@TableName("sys_rescource")
+@TableName("sys_resource")
 public class Rescource extends DataEntity<Rescource> {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +48,20 @@ public class Rescource extends DataEntity<Rescource> {
 
 	@TableField("original_net_url")
 	private String originalNetUrl;
+	
+	@TableField("order_id")
+	private String orderId;
+
+	
+
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
 
 	public String getFileName() {
 		return fileName;
