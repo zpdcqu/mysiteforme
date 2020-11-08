@@ -8,7 +8,7 @@ import com.mysiteforme.admin.entity.OrderList;
 import com.mysiteforme.admin.entity.Rescource;
 import com.mysiteforme.admin.entity.User;
 import com.mysiteforme.admin.entity.UserDemand;
-import com.mysiteforme.admin.entity.UserDemandVo;
+import com.mysiteforme.admin.entity.VO.UserDemandVo;
 import com.mysiteforme.admin.service.DemandService;
 import com.mysiteforme.admin.service.FileService;
 import com.mysiteforme.admin.service.OrderListService;

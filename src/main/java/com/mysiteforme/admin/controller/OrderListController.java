@@ -1,59 +1,30 @@
 package com.mysiteforme.admin.controller;
 
-import com.xiaoleilu.hutool.date.DateUtil;
-import com.xiaoleilu.hutool.db.Entity;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.mysiteforme.admin.entity.Demand;
-import com.mysiteforme.admin.entity.File;
-import com.mysiteforme.admin.entity.Operating;
-import com.mysiteforme.admin.entity.OrderList;
-import com.mysiteforme.admin.entity.OrderListVo;
-import com.mysiteforme.admin.entity.Rescource;
-import com.mysiteforme.admin.entity.Role;
-import com.mysiteforme.admin.entity.User;
-import com.mysiteforme.admin.entity.UserDemand;
-import com.mysiteforme.admin.entity.UserDemandVo;
-import com.mysiteforme.admin.service.DemandService;
-import com.mysiteforme.admin.service.FileService;
-import com.mysiteforme.admin.service.OrderListService;
-import com.mysiteforme.admin.service.RescourceService;
-import com.mysiteforme.admin.service.RoleService;
-import com.mysiteforme.admin.service.UserService;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.mysiteforme.admin.util.Constants;
-import com.mysiteforme.admin.util.EntityUtils;
-import com.mysiteforme.admin.util.LayerData;
-import com.mysiteforme.admin.util.RestResponse;
 import com.mysiteforme.admin.annotation.SysLog;
 import com.mysiteforme.admin.base.MySysUser;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-
+import com.mysiteforme.admin.entity.*;
+import com.mysiteforme.admin.entity.VO.UserDemandVo;
+import com.mysiteforme.admin.service.*;
+import com.mysiteforme.admin.util.Constants;
+import com.mysiteforme.admin.util.LayerData;
+import com.mysiteforme.admin.util.RestResponse;
+import com.xiaoleilu.hutool.date.DateUtil;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.ServletRequest;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
